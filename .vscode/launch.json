@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter: run (selected device)",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "Flutter: re-attach to app already running on phone",
+      "request": "attach",
+      "type": "dart"
+    },
+    {
+      "name": "Flutter: run on OnePlus over USB",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "57fa1dbd"
+    },
+    {
+      "name": "Flutter: run on OnePlus over Wi-Fi",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "192.168.31.194:5555"
+    }
+  ]
+}
