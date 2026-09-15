@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learing_codepur/utils/routes.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -43,6 +44,7 @@ class LoginPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 print('Hi codepur');
+                Navigator.pushNamed(context, MyRoutes.homeRoute);
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(150, 48),
