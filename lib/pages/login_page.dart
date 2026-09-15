@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learing_codepur/utils/routes.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  LoginPage({super.key});
+  String name = "";
+  bool changeButton = false;
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -17,7 +24,7 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Welcome',
+              'Welcome ${widget.name}',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             Padding(
@@ -29,6 +36,10 @@ class LoginPage extends StatelessWidget {
                       hintText: 'Enter Username',
                       labelText: 'Username',
                     ),
+                    onChanged: (value) {
+                      widget.name = value;
+                      setState(() {});
+                    },
                   ),
                   TextFormField(
                     obscureText: true,
@@ -41,17 +52,51 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                print('Hi codepur');
+            InkWell(
+              onTap: () async {
+                setState(() {
+                  widget.changeButton = true;
+                });
+                await Future.delayed(Duration(seconds: 1));
                 Navigator.pushNamed(context, MyRoutes.homeRoute);
               },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(150, 48),
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: AnimatedContainer(
+                duration: Duration(seconds: 1),
+                height: 50,
+                width: widget.changeButton?100:150,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.deepPurple,
+                  // borderRadius: BorderRadius.circular(8),
+                  shape: widget.changeButton?BoxShape.circle:BoxShape.rectangle
+                ),
+                child: !widget.changeButton?
+                Text(
+                  'Login',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                )
+                :
+                Icon(
+                  Icons.done,
+                  color: Colors.white,
+                ),
               ),
-              child: Text('Login', style: TextStyle(fontSize: 18)),
             ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     print('Hi codepur');
+            //     Navigator.pushNamed(context, MyRoutes.homeRoute);
+            //   },
+            //   style: ElevatedButton.styleFrom(
+            //     minimumSize: const Size(150, 48),
+            //     padding: const EdgeInsets.symmetric(horizontal: 24),
+            //   ),
+            //   child: Text('Login', style: TextStyle(fontSize: 18)),
+            // ),
           ],
         ),
       ),
