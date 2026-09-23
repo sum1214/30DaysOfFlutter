@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: Vx.m16,
+          padding: Vx.m32,
           child: Column(
             crossAxisAlignment: .start,
             children: [
