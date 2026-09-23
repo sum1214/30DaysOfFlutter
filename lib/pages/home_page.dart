@@ -3,8 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_learing_codepur/models/catalog.dart';
+import 'package:flutter_learing_codepur/widgets/catalog_header.dart';
+import 'package:flutter_learing_codepur/widgets/catalog_list.dart';
 import 'package:flutter_learing_codepur/widgets/drawer.dart';
 import 'package:flutter_learing_codepur/widgets/item_widget.dart';
+import 'package:flutter_learing_codepur/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,14 +41,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Catalog app')),
-      body: ListView.builder(
-        itemCount: CatalogModel.items.length,
-        itemBuilder: (context, index) {
-          return ItemWidget(item: CatalogModel.items[index]);
-        },
-      ),
-      drawer: MyDrawer(),
+      body: SafeArea(
+        child: Container(
+          padding: Vx.m16,
+          child: Column(
+            crossAxisAlignment: .start,
+            children: [
+              CatalogHeader(),
+              if (CatalogModel.items.isNotEmpty) 
+              CatalogList().expand()
+              else 
+              Center(child: CircularProgressIndicator())
+
+            ],
+          ),
+        ),
+      )
     );
   }
 }
