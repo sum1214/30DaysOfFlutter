@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_learing_codepur/models/catalog.dart';
-import 'package:flutter_learing_codepur/widgets/catalog_header.dart';
-import 'package:flutter_learing_codepur/widgets/catalog_list.dart';
+import 'package:flutter_learing_codepur/widgets/home_widgets/catalog_header.dart';
+import 'package:flutter_learing_codepur/widgets/home_widgets/catalog_list.dart';
 import 'package:flutter_learing_codepur/widgets/drawer.dart';
 import 'package:flutter_learing_codepur/widgets/item_widget.dart';
 import 'package:flutter_learing_codepur/widgets/themes.dart';
@@ -31,33 +31,33 @@ class _HomePageState extends State<HomePage> {
     );
     final decodedData = jsonDecode(catalogJson);
     final productsData = decodedData['products'];
-    CatalogModel.items = List.from(productsData).map<Item>((item)=>Item.fromMap(item)).toList();
+    await Future.delayed(const Duration(seconds: 2));
+    CatalogModel.items = List.from(
+      productsData,
+    ).map<Item>((item) => Item.fromMap(item)).toList();
     print(productsData);
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyTheme.creamColor,
       body: SafeArea(
         child: Container(
-          color: Colors.white,
           padding: Vx.m32,
           child: Column(
             crossAxisAlignment: .start,
             children: [
               CatalogHeader(),
-              if (CatalogModel.items.isNotEmpty) 
-              CatalogList().expand()
-              else 
-              Center(child: CircularProgressIndicator())
-
+              if (CatalogModel.items.isNotEmpty)
+                CatalogList().expand()
+              else
+                CircularProgressIndicator().centered().expand(),
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }
