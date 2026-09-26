@@ -12,6 +12,6 @@ class CatalogImage extends StatelessWidget {
       image,
       errorBuilder: (context, error, stackTrace) =>
           const Icon(Icons.broken_image),
-    ).box.roundedLg.p8.color(MyTheme.creamColor).make().p16().w40(context);
+    ).box.roundedLg.p8.color(MyTheme.creamColor).make().p16().w32(context);
   }
 }

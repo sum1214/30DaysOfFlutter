@@ -33,35 +33,31 @@ class CatalogItem extends StatelessWidget {
                 catalog.desc
                     .toString()
                     .text
+                    .color(Colors.black)
                     .textStyle(context.captionStyle)
                     .make(),
                 10.heightBox,
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(right: 8, bottom: 8),
-                    child: OverflowBar(
-                      alignment: .spaceBetween,
-                      children: [
-                        '\$${catalog.price}'.text.bold.xl.make(),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all(
-                              MyTheme.darkBluishColor,
-                            ),
-                            shape: WidgetStatePropertyAll(StadiumBorder()),
-                          ),
-                          child: 'Buy'.text.make(),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                Row(
+                  mainAxisAlignment: .spaceBetween,
+                  children: [
+                    '\$${catalog.price}'.text.bold.black.make(),
+                    InkWell(
+                      onTap: () {},
+                      child: Image.asset(
+                        'assets/images/add_to_cart.png',
+                        height: 24,
+                        width: 24,
+                        fit: BoxFit.contain,
+                        color: Colors.green,
+                      ),
+                    ).p16(),
+                  ],
+                ).pOnly(right: 8),
               ],
             ),
           ),
         ],
       ),
-    ).white.roundedLg.square(100).make().py16();
+    ).white.roundedLg.height(150).make().py16();
   }
 }

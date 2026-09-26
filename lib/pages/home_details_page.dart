@@ -10,22 +10,26 @@ class HomeDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: MyTheme.creamColor),
-      backgroundColor: MyTheme.creamColor,
-      bottomNavigationBar: OverflowBar(
-        alignment: .spaceBetween,
-        children: [
-          '\$${catalog.price}'.text.bold.xl.red500.make(),
-          ElevatedButton(
-            onPressed: () {},
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(MyTheme.darkBluishColor),
-              shape: WidgetStatePropertyAll(StadiumBorder()),
+      appBar: AppBar(backgroundColor: Colors.white),
+      backgroundColor: Colors.white,
+      bottomNavigationBar: Container(
+        child: OverflowBar(
+          alignment: .spaceBetween,
+          children: [
+            '\$${catalog.price}'.text.bold.xl.red500.make(),
+            ElevatedButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(
+                  MyTheme.darkBluishColor,
+                ),
+                shape: WidgetStatePropertyAll(StadiumBorder()),
+              ),
+              child: 'Add to cart'.text.make(),
             ),
-            child: 'Buy'.text.make(),
-          ),
-        ],
-      ).pSymmetric(h: 32,v: 48),
+          ],
+        ),
+      ).pOnly(bottom: 48, left: 16, right: 16),
       body: SafeArea(
         child: Column(
           children: [
@@ -39,8 +43,8 @@ class HomeDetailsPage extends StatelessWidget {
                 arcType: .convey,
                 edge: .top,
                 child: Container(
+                  padding: EdgeInsets.only(top: 16),
                   width: context.screenWidth,
-                  color: Colors.white,
                   child: Column(
                     children: [
                       catalog.name
@@ -53,14 +57,22 @@ class HomeDetailsPage extends StatelessWidget {
                       catalog.desc
                           .toString()
                           .text
+                          .black
                           .xl
-                          .textStyle(context.captionStyle)
+                          .textStyle(context.bodySmall)
                           .make(),
                       10.heightBox,
+                      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.'
+                          .text
+                          .black
+                          .textStyle(context.captionStyle)
+                          .make()
+                          .p16()
+                          .expand(),
                     ],
-                  ),
+                  ).expand(),
                 ),
-              ).py64(),
+              ).p8(),
             ),
           ],
         ).p8(),
