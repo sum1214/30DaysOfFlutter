@@ -50,7 +50,6 @@ class _HomePageState extends State<HomePage> {
         },
         child: Icon(CupertinoIcons.cart),
       ),
-      backgroundColor: MyTheme.creamColor,
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
